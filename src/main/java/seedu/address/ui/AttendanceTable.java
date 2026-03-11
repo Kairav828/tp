@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
@@ -8,6 +9,9 @@ import javafx.scene.layout.GridPane;
  * Each week is represented by a single cell that can be colored grey (default), green (present), or red (absent).
  */
 public class AttendanceTable {
+
+    private static final String CELL_STYLE_PREFIX =
+            "-fx-alignment: CENTER; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-background-color: ";
 
     private final GridPane attendanceTable;
 
@@ -38,7 +42,7 @@ public class AttendanceTable {
         // Add attendance cells (row 1) with default grey color
         for (int week = 1; week <= 13; week++) {
             Label attendanceCell = new Label();
-            attendanceCell.setStyle("-fx-alignment: CENTER; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-background-color: #d3d3d3;");
+            attendanceCell.setStyle(CELL_STYLE_PREFIX + "#d3d3d3;");
             attendanceCell.setPrefWidth(35);
             attendanceCell.setMinHeight(25);
             attendanceCell.setMaxHeight(Double.MAX_VALUE);
@@ -56,23 +60,25 @@ public class AttendanceTable {
             return;
         }
 
-        for (javafx.scene.Node node : attendanceTable.getChildren()) {
+        for (Node node : attendanceTable.getChildren()) {
             Integer columnIndex = GridPane.getColumnIndex(node);
             Integer rowIndex = GridPane.getRowIndex(node);
 
             if (columnIndex != null && rowIndex != null && columnIndex == week - 1 && rowIndex == 1) {
                 String backgroundColor;
                 switch (status.toLowerCase()) {
-                    case "present":
-                        backgroundColor = "#90EE90"; // Light green
-                        break;
-                    case "absent":
-                        backgroundColor = "#FF6B6B"; // Light red
-                        break;
-                    default:
-                        backgroundColor = "#d3d3d3"; // Grey
+                case "present":
+                    backgroundColor = "#90EE90"; // Light green
+                    break;
+                case "absent":
+                    backgroundColor = "#FF6B6B"; // Light red
+                    break;
+                default:
+                    backgroundColor = "#d3d3d3"; // Grey
                 }
-                ((Label) node).setStyle("-fx-alignment: CENTER; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-background-color: " + backgroundColor + ";");
+                String style = CELL_STYLE_PREFIX + backgroundColor + ";";
+                Label cellLabel = (Label) node;
+                cellLabel.setStyle(style);
                 break;
             }
         }
@@ -88,12 +94,14 @@ public class AttendanceTable {
             return;
         }
 
-        for (javafx.scene.Node node : attendanceTable.getChildren()) {
+        for (Node node : attendanceTable.getChildren()) {
             Integer columnIndex = GridPane.getColumnIndex(node);
             Integer rowIndex = GridPane.getRowIndex(node);
 
             if (columnIndex != null && rowIndex != null && columnIndex == week - 1 && rowIndex == 1) {
-                ((Label) node).setStyle("-fx-alignment: CENTER; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-background-color: " + color + ";");
+                String style = CELL_STYLE_PREFIX + color + ";";
+                Label cellLabel = (Label) node;
+                cellLabel.setStyle(style);
                 break;
             }
         }
