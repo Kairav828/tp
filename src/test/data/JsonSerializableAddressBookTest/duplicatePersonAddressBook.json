@@ -3,12 +3,12 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@u.nus.edu.sg",
-    "address": "123, Jurong West Ave 6, #08-111",
+    "teleHandle": "@alice_pauline",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@u.nus.edu.sg",
-    "address": "4th street"
+    "teleHandle": "@alice_pauline2"
   } ]
 }
