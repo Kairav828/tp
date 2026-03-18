@@ -3,11 +3,13 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
-    "teleHandle": "@valid_person"
+    "teleHandle": "@valid_person",
+    "studentId": "A0123456X"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
-    "teleHandle": "@invalid_phone"
+    "teleHandle": "@invalid_phone",
+    "studentId": "B0123456Y"
   } ]
 }

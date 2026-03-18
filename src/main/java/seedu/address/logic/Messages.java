@@ -43,6 +43,8 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Telegram: ")
                 .append(person.getTeleHandle())
+                .append("; Student ID: ")
+                .append(person.getStudentId())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

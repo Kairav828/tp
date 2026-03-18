@@ -3,6 +3,7 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "teleHandle": "@hans_muster"
+    "teleHandle": "@hans_muster",
+    "studentId": "A0123456X"
   } ]
 }
