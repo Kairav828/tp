@@ -24,6 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String WELCOME_MESSAGE = "Welcome to CLI-Tacts for your students!";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -115,6 +116,7 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        resultDisplay.setFeedbackToUser(WELCOME_MESSAGE);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());

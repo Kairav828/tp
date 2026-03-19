@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project adapts the architecture and tooling from [se-edu/addressbook-level3](https://github.com/se-edu/addressbook-level3).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit 5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -122,14 +123,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the CLI-Tacts data i.e., all `Person` objects (which are contained in a `UniquePersonList` object). Each `Person` corresponds to a CS2040S student and currently has fields such as `Name`, `Phone`, `Email`, `TeleHandle`, `StudentId`, and a single `TutorialGroup`.
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<div markdown="span" class="alert alert-info">:information_source: **Note:** AddressBook Level 3 discussed an alternative model with a shared `Tag` list. CLI-Tacts instead uses a single `TutorialGroup` value per `Person`, which simplifies the model for the CS2040S context where each student belongs to one tutorial group at a time.
 
 </div>
 
@@ -153,7 +152,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented in CLI-Tacts. Unless otherwise stated, the diagrams are adapted from AddressBook Level 3 but apply directly because CLI-Tacts preserves the same high-level architecture (UI–Logic–Model–Storage) while changing the domain model (CS2040S students instead of generic contacts).
 
 ### \[Proposed\] Undo/redo feature
 
@@ -337,7 +336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: Mark student attendanc**
+**Use case: Mark student attendance**
 
 **MSS**
 
