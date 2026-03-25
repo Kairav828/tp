@@ -40,6 +40,7 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_MARK_GROUP_SUCCESS =
             "Marked week %1$d for tutorial group %2$s: %3$d student(s) updated, %4$d already recorded for this week.";
     public static final String MESSAGE_NO_STUDENTS_IN_GROUP = "No students found in tutorial group %1$s.";
+    public static final String MESSAGE_INVALID_WEEK = "Week must be a positive integer between 1 to 13.";
 
     private final Optional<Index> index;
     private final Optional<TutorialGroup> tutorialGroup;
@@ -73,6 +74,9 @@ public class MarkCommand extends Command {
         if (tutorialGroup.isPresent()) {
             return executeMarkTutorialGroup(model, tutorialGroup.get(), week);
         }
+        // what happens if both index and tutorial group are present
+        // what happens if tutorial group is not present
+        // throw error in parser?
         return executeMarkIndex(model, index.get(), week);
     }
 
@@ -81,6 +85,10 @@ public class MarkCommand extends Command {
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        if (week < 1 || week > Attendance.MAX_WEEKS) {
+            throw new CommandException(MESSAGE_INVALID_WEEK);
         }
 
         Person personToMark = lastShownList.get(index.getZeroBased());

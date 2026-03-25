@@ -89,6 +89,15 @@ public class MarkCommandTest {
     }
 
     @Test
+    public void execute_invalidWeek_throwsCommandException() {
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, 0);
+        assertCommandFailure(markCommand, model, MarkCommand.MESSAGE_INVALID_WEEK);
+
+        markCommand = new MarkCommand(INDEX_FIRST_PERSON, Attendance.MAX_WEEKS + 1);
+        assertCommandFailure(markCommand, model, MarkCommand.MESSAGE_INVALID_WEEK);
+    }
+
+    @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
