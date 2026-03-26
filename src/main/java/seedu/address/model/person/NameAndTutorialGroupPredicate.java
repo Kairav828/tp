@@ -45,7 +45,9 @@ public class NameAndTutorialGroupPredicate implements Predicate<Person> {
         boolean matchesEmail = emails.isEmpty() || emails.stream()
                 .anyMatch(email -> person.getEmail().value.equalsIgnoreCase(email.value));
         boolean matchesTeleHandle = teleHandles.isEmpty() || teleHandles.stream()
-                .anyMatch(teleHandle -> person.getTeleHandle().value.equalsIgnoreCase(teleHandle.value));
+                .anyMatch(teleHandle -> person.getTeleHandle()
+                        .map(personTeleHandle -> personTeleHandle.value.equalsIgnoreCase(teleHandle.value))
+                        .orElse(false));
 
         return matchesName && matchesTutorialGroup && matchesEmail && matchesTeleHandle;
     }
