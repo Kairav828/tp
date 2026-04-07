@@ -100,6 +100,8 @@ public class EditCommand extends Command {
 
         if (model.hasPersonWithEmail(editedPerson.getEmail(), personToEdit)) {
             throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
+
         if (model.hasPersonWithPhone(editedPerson.getPhone(), personToEdit)) {
             throw new CommandException(MESSAGE_DUPLICATE_PHONE);
         }

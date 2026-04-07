@@ -77,6 +77,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList().stream()
                 .filter(p -> !p.equals(excludePerson))
                 .anyMatch(p -> p.getEmail().equals(email));
+    }
+
+    /**
      * Returns true if any person in the address book has the given {@code phone}, excluding {@code excludePerson}.
      */
     public boolean hasPersonWithPhone(Phone phone, Person excludePerson) {

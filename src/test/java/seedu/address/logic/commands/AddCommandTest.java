@@ -152,6 +152,10 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPersonWithEmail(Email email, Person excludePerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPersonWithPhone(Phone phone, Person excludePerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -197,6 +201,9 @@ public class AddCommandTest {
         @Override
         public boolean hasPersonWithEmail(Email email, Person excludePerson) {
             return !this.person.equals(excludePerson) && this.person.getEmail().equals(email);
+        }
+
+        @Override
         public boolean hasPersonWithPhone(Phone phone, Person excludePerson) {
             return !this.person.equals(excludePerson) && this.person.getPhone().equals(phone);
         }
@@ -219,6 +226,9 @@ public class AddCommandTest {
             return personsAdded.stream()
                     .filter(p -> !p.equals(excludePerson))
                     .anyMatch(p -> p.getEmail().equals(email));
+        }
+
+        @Override
         public boolean hasPersonWithPhone(Phone phone, Person excludePerson) {
             return personsAdded.stream()
                     .filter(p -> !p.equals(excludePerson))
