@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
@@ -59,6 +60,9 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if any person in the address book (excluding {@code excludePerson}) has the given {@code email}.
+     */
+    boolean hasPersonWithEmail(Email email, Person excludePerson);
      * Returns true if any person in the address book (excluding {@code excludePerson}) has the given {@code phone}.
      */
     boolean hasPersonWithPhone(Phone phone, Person excludePerson);
