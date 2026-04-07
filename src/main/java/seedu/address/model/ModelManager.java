@@ -99,6 +99,9 @@ public class ModelManager implements Model {
     public boolean hasPersonWithEmail(Email email, Person excludePerson) {
         requireNonNull(email);
         return addressBook.hasPersonWithEmail(email, excludePerson);
+    }
+
+    @Override
     public boolean hasPersonWithPhone(Phone phone, Person excludePerson) {
         requireNonNull(phone);
         return addressBook.hasPersonWithPhone(phone, excludePerson);

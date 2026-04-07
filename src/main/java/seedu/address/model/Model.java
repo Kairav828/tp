@@ -63,6 +63,8 @@ public interface Model {
      * Returns true if any person in the address book (excluding {@code excludePerson}) has the given {@code email}.
      */
     boolean hasPersonWithEmail(Email email, Person excludePerson);
+
+    /**
      * Returns true if any person in the address book (excluding {@code excludePerson}) has the given {@code phone}.
      */
     boolean hasPersonWithPhone(Phone phone, Person excludePerson);
