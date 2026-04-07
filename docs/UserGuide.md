@@ -30,14 +30,14 @@ The primary users are **CS2040S Teaching Assistants** who:
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window contaning the link to this user guide.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window containing the link to this user guide.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
 
    * `add n/John Doe i/A0123456X e/johnd@u.nus.edu p/98765432 th/@johndoe t/T01` : Adds student `John Doe` to CLI-Tacts.
 
-   * `mark 1 w/1` : Marks the first student's attedance for week 1.
+   * `mark 1 w/1` : Marks the first student's attendance for week 1.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -333,7 +333,7 @@ Format: `mark t/TUTORIAL_GROUP w/WEEK`
 * Students **already** marked for that week are **skipped** (no error). The result message states how many were updated and how many were already recorded.
 * If **no** student has that tutorial group, CLI-Tacts shows an error.
 
-![mark tutorial](image.png)
+![mark tutorial](images/mark_tutorial.png)
 
 #### Notes
 
@@ -393,8 +393,6 @@ Format: `unmark INDEX w/WEEK`
 * `INDEX` is the position in the **currently displayed** student list (`list`, `find`, …).
 * Use this when you want to unmark a specific student's attendance for a given week.
 
-![unmark](images/unmark.png)
-
 #### Unmark all students in a tutorial group
 
 Format: `unmark t/TUTORIAL_GROUP w/WEEK`
@@ -410,8 +408,6 @@ Where:
 Examples:
 * `unmark 1 w/2` — unmarks the 1st student in the displayed list for week 2.
 * `unmark t/T01 w/4` — unmarks attendance for all marked students in tutorial group T01 for week 4.
-
-![unmark tutorial](images/unmark_tutorial.png)
 
 If the command format is invalid or missing required parameters, CLI-Tacts shows the usage message:
 
@@ -463,7 +459,7 @@ The **Attendance Statistics Panel** is displayed at the bottom of the main windo
 
 | Column | Description |
 |--------|-------------|
-| **Tutorial Group** | The tutorial group code (e.g. `T01`). One row per group, sorted alphabetically. |
+| **Tutorial Group** | The tutorial group code (e.g. `T01`). One row per group, sorted lexicographically. |
 | **W1 – W13** | The attendance rate for that tutorial group in each week, shown as a percentage of students present (e.g. `75%` means 3 out of 4 students were marked present). |
 | **Rate** | The overall attendance rate for that tutorial group across all 13 weeks combined. |
 | **Overall** (last row) | The attendance rate across **all** students and all weeks. Each week column shows the percentage of all students present that week; the Rate column shows the global average. |
@@ -510,7 +506,8 @@ CLI-Tacts data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-CLI-Tacts data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+CLI-Tacts data are saved automatically as a JSON file 
+`[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file make its format invalid, CLI-Tacts will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
@@ -525,8 +522,14 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CLI-Tacts home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**:
+
+1. **On your old computer**, close CLI-Tacts, then copy your data file. By default it is **`addressbook.json`** inside a **`data`** folder next to where you run the app (same folder as `CLI-Tacts.jar`), i.e. `data/addressbook.json` relative to that working directory. Keep a backup somewhere safe (USB drive, cloud, email).
+2. **On the new computer**, install Java 17+, place `CLI-Tacts.jar` in a folder of your choice, and run the app once so it creates the default folders/files (or create a `data` folder yourself).
+3. **Replace the new data file** with your backup: copy your old **`addressbook.json`** into the new machine’s **`data`** folder, overwriting the file there. If `data` does not exist yet, create it and put `addressbook.json` inside.
+4. Start CLI-Tacts again from the **same folder** as usual so it loads `data/addressbook.json`. You should see your previous students and attendance.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
