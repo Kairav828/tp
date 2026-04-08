@@ -376,12 +376,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-**Performance**
-1.  All commands (`add`, `delete`, `edit`, `find`, `list`, `clear`, `mark`, `unmark`, `export`) should return a response within 1 second when the dataset contains up to 200 students.
-2.  The application should launch and load stored data within 2 seconds for datasets up to 200 students.
-
----
-
 **Usability**
 1.  The system must be fully operable using keyboard-only commands without requiring mouse interaction.
 2.  All commands must follow a consistent prefix format (e.g., `n/`, `i/`, `e/`, `t/`) to ensure predictable command usage.
@@ -394,20 +388,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  All modifications to student data (`add`, `delete`, `edit`, `mark`, `unmark`, `clear`) must be automatically saved immediately after execution.
 2.  On application startup, the system must automatically load previously saved data if the storage file exists and is valid.
-3.  If the address book file cannot be loaded (for example, corrupted JSON), the system must recover without crashing (the current implementation starts from an empty address book and logs a warning).
-4.  After a modifying command completes successfully, changes are persisted; a crash mid-command may leave that command’s effects unsaved.
-5.  The system should gracefully handle invalid input commands without crashing.
-
----
-
-**Scalability**
-1. The system must support at least 200 students across multiple tutorial groups still meeting the defined performance requirements.
-2. The system should maintain command response times within 1 second as the number of stored students increases up to the supported limit.
-3. The system should allow new tutorial groups to be added without requiring changes to the system configuration or code.
-4. The system should allow the dataset to grow across multiple tutorial groups without affecting the accuracy of search or attendance operations.
-5. The storage format should support efficient reading and writing even as the number of stored student records increases.
-6. The system should be able to load and display large student lists without causing the interface to freeze or become unresponsive.
-7. The system architecture should allow future expansion to support additional student attributes without significant redesign of the storage structure.
+3.  After a modifying command completes successfully, changes are persisted; a crash mid-command may leave that command’s effects unsaved.
+4.  The system should gracefully handle invalid input commands without crashing.
 
 ---
 
