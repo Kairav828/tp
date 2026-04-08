@@ -37,6 +37,12 @@ public class UnmarkCommandParserTest {
     }
 
     @Test
+    public void parse_validGroupArgsSwappedOrder_returnsUnmarkCommand() {
+        assertParseSuccess(parser, PREFIX_WEEK + "3 " + PREFIX_TUTORIAL_GROUP + "T01",
+                new UnmarkCommand(new TutorialGroup("T01"), 3));
+    }
+
+    @Test
     public void parse_duplicateWeek_throwsParseException() {
         assertParseFailure(parser, PREFIX_TUTORIAL_GROUP + "T01 " + PREFIX_WEEK + "1 " + PREFIX_WEEK + "2",
                 getErrorMessageForDuplicatePrefixes(PREFIX_WEEK));

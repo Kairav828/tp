@@ -64,10 +64,10 @@ The primary users are **CS2040S Teaching Assistants** who:
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   Currently, CLI-Tacts uses a **single tutorial group** per student, so you will not see repeated `t/` prefixes.
 
-* Parameters can be in any order for `add`, `edit` , `mark` and `find` commands.<br>
+* Parameters can be in any order for `add`, `edit` , `mark`, `unmark` and `find` commands.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* `edit`, `delete` and `unmark` require `INDEX`; `mark` requires one or more indices.
+* `edit` and `delete` require `INDEX`; `mark` and `unmark` can be done by `INDEX` or by `TUTORIAL_GROUP`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `export` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -425,6 +425,7 @@ Examples (multiple students):
 Example (whole group):
 
 * `mark t/T02 w/2` — marks all students in tutorial group `T02` for week 2.
+* `mark w/2 t/T02` — same as above, with prefix order reversed.
 
 Here are some examples of error messages if the command entered is invalid:
 
@@ -495,6 +496,8 @@ Where:
 Examples:
 * `unmark 1 w/2` — unmarks the 1st student in the displayed list for week 2.
 * `unmark t/T01 w/4` — unmarks attendance for all marked students in tutorial group T01 for week 4.
+* `unmark w/2 1` — same as the first example, with prefix order reversed.
+* `unmark w/4 t/T01` — same as the second example, with prefix order reversed.
 
 Here are some examples of error messages if the command entered is invalid:
 
