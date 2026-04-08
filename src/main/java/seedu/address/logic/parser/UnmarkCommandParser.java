@@ -25,7 +25,11 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
     public UnmarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
         String trimmed = args.trim();
-        String tokenizeInput = trimmed.startsWith(PREFIX_TUTORIAL_GROUP.getPrefix())
+        // ArgumentTokenizer only treats a prefix as valid if it is preceded by whitespace; ensure
+        // any prefix-leading form (e.g. "t/T01 w/2" or "w/2 t/T01") is recognized when arguments
+        // are trimmed after the command word.
+        String tokenizeInput = (trimmed.startsWith(PREFIX_TUTORIAL_GROUP.getPrefix())
+                || trimmed.startsWith(PREFIX_WEEK.getPrefix()))
                 ? " " + trimmed
                 : trimmed;
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(tokenizeInput, PREFIX_WEEK, PREFIX_TUTORIAL_GROUP);
