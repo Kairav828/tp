@@ -221,4 +221,24 @@ public class AddCommandParserTest {
                 + PHONE_DESC_BOB + TELE_HANDLE_DESC_BOB + TUTORIAL_GROUP_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_phoneThreeAndFifteenDigits_success() {
+        Person expectedThree = new PersonBuilder(BOB).withPhone("123").build();
+        assertParseSuccess(parser, NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB + " " + PREFIX_PHONE + "123"
+                + TELE_HANDLE_DESC_BOB + TUTORIAL_GROUP_DESC_BOB, new AddCommand(expectedThree));
+        Person expectedMax = new PersonBuilder(BOB).withPhone("123456789012345").build();
+        assertParseSuccess(parser, NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB + " " + PREFIX_PHONE
+                + "123456789012345" + TELE_HANDLE_DESC_BOB + TUTORIAL_GROUP_DESC_BOB,
+                new AddCommand(expectedMax));
+    }
+
+    @Test
+    public void parse_phoneTooShortOrTooLong_failure() {
+        assertParseFailure(parser, NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB + " " + PREFIX_PHONE + "12"
+                + TELE_HANDLE_DESC_BOB + TUTORIAL_GROUP_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB + " " + PREFIX_PHONE
+                + "1234567890123456" + TELE_HANDLE_DESC_BOB + TUTORIAL_GROUP_DESC_BOB,
+                Phone.MESSAGE_CONSTRAINTS);
+    }
 }

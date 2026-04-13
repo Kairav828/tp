@@ -27,19 +27,22 @@ public class PhoneTest {
         // invalid phone numbers
         assertFalse(Phone.isValidPhone("")); // empty string
         assertFalse(Phone.isValidPhone(" ")); // spaces only
-        assertFalse(Phone.isValidPhone("91")); // too short
+        assertFalse(Phone.isValidPhone("91")); // too short (2 digits)
+        assertFalse(Phone.isValidPhone("12")); // too short (below minimum)
         assertFalse(Phone.isValidPhone("phone")); // non-numeric
         assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits
         assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
-        assertFalse(Phone.isValidPhone("911")); // only 3 digits
-        assertFalse(Phone.isValidPhone("1234567")); // only 7 digits
-        assertFalse(Phone.isValidPhone("123456789")); // 9 digits, too long
-        assertFalse(Phone.isValidPhone("124293842033123")); // way too long
+        assertFalse(Phone.isValidPhone("1234567890123456")); // too long (16 digits)
 
-        // valid phone numbers (exactly 8 digits)
+        // valid phone numbers (3 to 15 digits inclusive)
+        assertTrue(Phone.isValidPhone("911"));
+        assertTrue(Phone.isValidPhone("1234567"));
+        assertTrue(Phone.isValidPhone("123456789"));
+        assertTrue(Phone.isValidPhone("124293842033123"));
         assertTrue(Phone.isValidPhone("93121534"));
         assertTrue(Phone.isValidPhone("12345678"));
         assertTrue(Phone.isValidPhone("00000000"));
+        assertTrue(Phone.isValidPhone("123456789012345")); // 15 digits
     }
 
     @Test

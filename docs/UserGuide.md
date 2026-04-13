@@ -103,7 +103,8 @@ Where:
   - Examples: 
     - Valid: `john.doe@u.nus.edu`, `alice+sem1@u.nus.edu`
     - Invalid: `john..doe@u.nus.edu`, `.john@u.nus.edu`, `alice@gmail.com`
-- `PHONE_NUMBER` must be exactly 8 digits (e.g. `98765432`)
+- `PHONE_NUMBER` must be digits only, **3 to 15 digits** inclusive (e.g. `98765432`, `123`).
+  - As of **2026**, **3** is the shortest possible phone number length and **15** is the longest possible phone number length that CLI-Tacts accepts.
 - `TELE_HANDLE` (optional) must start with `@`, 5–32 characters (letters, numbers, underscores). Case-insensitive, stored in lowercase.
 - `TUTORIAL_GROUP` must be `T` followed by exactly 2 digits, case-sensitive (e.g. `T01` ✓, `t01` ✗)
 
@@ -151,8 +152,10 @@ If an invalid student ID is supplied:
 If an invalid phone number is supplied:
 
 <div style="border: 1px solid #d9d9d9; border-radius: 6px; padding: 8px 12px; margin: 8px 0;">
-<code>Phone numbers should only contain numbers, and it should be exactly 8 digits long</code>
+<code>Phone numbers should only contain digits, and be between 3 and 15 digits long (inclusive).</code>
 </div>
+
+As of **2026**, the shortest allowed length is **3** digits and the longest is **15** digits.
 
 If an invalid Telegram handle is supplied:
 

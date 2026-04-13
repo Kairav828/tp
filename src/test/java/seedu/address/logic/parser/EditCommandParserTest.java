@@ -165,6 +165,26 @@ public class EditCommandParserTest {
     }
 
     @Test
+    public void parse_phoneThreeAndFifteenDigits_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        EditPersonDescriptor descThree = new EditPersonDescriptorBuilder().withPhone("123").build();
+        assertParseSuccess(parser, targetIndex.getOneBased() + " " + PREFIX_PHONE + "123",
+                new EditCommand(targetIndex, descThree));
+        EditPersonDescriptor descMax = new EditPersonDescriptorBuilder()
+                .withPhone("123456789012345").build();
+        assertParseSuccess(parser, targetIndex.getOneBased() + " " + PREFIX_PHONE + "123456789012345",
+                new EditCommand(targetIndex, descMax));
+    }
+
+    @Test
+    public void parse_phoneTooShortOrTooLong_failure() {
+        assertParseFailure(parser, INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_PHONE + "12",
+                Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_PHONE + "1234567890123456",
+                Phone.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
     public void parse_multipleRepeatedFields_failure() {
         // valid followed by invalid
         Index targetIndex = INDEX_FIRST_PERSON;
