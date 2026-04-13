@@ -41,6 +41,7 @@ public class NameTest {
         assertTrue(Name.isValidName("Mary-Jane")); // name with hyphen
         assertTrue(Name.isValidName("O'Brien")); // name with apostrophe
         assertTrue(Name.isValidName("Lim, Junior")); // name with comma
+        assertTrue(Name.isValidName("Roy S/O Balakrishnan")); // name with slash
         assertTrue(Name.isValidName("a".repeat(54))); // max length
     }
 
