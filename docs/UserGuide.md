@@ -83,7 +83,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a person: `add`
+### Adding a student: `add`
 
 Adds a student to CLI-Tacts. Telegram handle is optional (useful for contacting students quickly, but not required).
 
@@ -122,7 +122,7 @@ If any non-optional field (`n/`, `i/`, `e/`, `p/`, `t/`) is missing, CLI-Tacts s
 
 <div style="border: 1px solid #d9d9d9; border-radius: 6px; padding: 8px 12px; margin: 8px 0;">
 <code>Invalid command format!<br>
-add: Adds a person to the address book. Parameters: n/NAME i/STUDENT_ID e/EMAIL p/PHONE [th/TELE_HANDLE] t/TUTORIAL_GROUP<br>
+add: Adds a student to the address book. Parameters: n/NAME i/STUDENT_ID e/EMAIL p/PHONE [th/TELE_HANDLE] t/TUTORIAL_GROUP<br>
 Example: add n/John Doe i/A0123456X e/johnd@u.nus.edu p/98765432 th/@john_doe t/T01</code>
 </div>
 
@@ -190,7 +190,7 @@ Shows a list of all students currently in CLI-Tacts.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a student : `edit`
 
 Edits an existing student in CLI-Tacts.
 
@@ -218,7 +218,7 @@ If the index is missing or invalid, CLI-Tacts shows the usage message:
 
 <div style="border: 1px solid #d9d9d9; border-radius: 6px; padding: 8px 12px; margin: 8px 0;">
 <code>Invalid command format!<br>
-edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.<br>
+edit: Edits the details of the student identified by the index number used in the displayed student list. Existing values will be overwritten by the input values.<br>
 Parameters: INDEX (must be a positive integer) [n/NAME] [i/STUDENT_ID] [e/EMAIL] [p/PHONE] [th/TELE_HANDLE] [t/TUTORIAL_GROUP]<br>
 Example: edit 1 n/John Doe i/A0123456X e/johndoe@u.nus.edu p/91234567 th/@john_doe</code>
 </div>
@@ -232,19 +232,19 @@ If no field is provided, CLI-Tacts shows an error similar to:
 If the edited values result in a duplicate student ID, CLI-Tacts shows an error similar to:
 
 <div style="border: 1px solid #d9d9d9; border-radius: 6px; padding: 8px 12px; margin: 8px 0;">
-<code>This student ID is already used by another person.</code>
+<code>This student ID is already used by another student.</code>
 </div>
 
 If the edited values result in a duplicate email, CLI-Tacts shows an error similar to:
 
 <div style="border: 1px solid #d9d9d9; border-radius: 6px; padding: 8px 12px; margin: 8px 0;">
-<code>This email is already used by another person.</code>
+<code>This email is already used by another student.</code>
 </div>
 
 If the edited values result in a duplicate phone number, CLI-Tacts shows an error similar to:
 
 <div style="border: 1px solid #d9d9d9; border-radius: 6px; padding: 8px 12px; margin: 8px 0;">
-<code>This phone number is already used by another person.</code>
+<code>This phone number is already used by another student.</code>
 </div>
 
 If any field value is invalid, CLI-Tacts shows the corresponding constraint message (same as in `add`).
@@ -351,7 +351,7 @@ Format: `list`
 Examples:
 * `list` — displays all students.
 
-### Deleting a person : `delete`
+### Deleting a student : `delete`
 
 Deletes the specified student from CLI-Tacts.
 
@@ -362,8 +362,8 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 ![delete command](images/delete_success.png)
 
@@ -375,7 +375,7 @@ If the index is missing or invalid format, CLI-Tacts shows the usage message:
 
 <div style="border: 1px solid #d9d9d9; border-radius: 6px; padding: 8px 12px; margin: 8px 0;">
 <code>Invalid command format!<br>
-delete: Deletes the person identified by the index number used in the displayed person list.<br>
+delete: Deletes the student identified by the index number used in the displayed student list.<br>
 Parameters: INDEX (must be a positive integer)<br>
 Example: delete 1</code>
 </div>
@@ -383,7 +383,7 @@ Example: delete 1</code>
 If the index is out of bounds, CLI-Tacts shows an error similar to:
 
 <div style="border: 1px solid #d9d9d9; border-radius: 6px; padding: 8px 12px; margin: 8px 0;">
-<code>This person's index provided is invalid.</code>
+<code>This student's index provided is invalid.</code>
 </div>
 
 </div>
@@ -466,7 +466,7 @@ Example (group): mark t/T02 w/2</code>
 If an index is out of bounds, CLI-Tacts shows an error similar to:
 
 <div style="border: 1px solid #d9d9d9; border-radius: 6px; padding: 8px 12px; margin: 8px 0;">
-<code>This person's index provided is invalid.</code>
+<code>This student's index provided is invalid.</code>
 </div>
 
 If a student has already been marked for the specified week:
@@ -526,7 +526,7 @@ If the command format is invalid or missing required parameters, CLI-Tacts shows
 
 <div style="border: 1px solid #d9d9d9; border-radius: 6px; padding: 8px 12px; margin: 8px 0;">
 <code>Invalid command format!<br>
-unmark: Unmarks the person identified by the index number used in the displayed person list as attended, or unmarks the entire tutorial group.<br>
+unmark: Unmarks the student identified by the index number used in the displayed student list as attended, or unmarks the entire tutorial group.<br>
 Parameters: INDEX (must be a positive integer) w/WEEK (must be a positive integer)<br>
 OR: t/TUTORIAL_GROUP w/WEEK (must be a positive integer)<br>
 Examples: unmark 1 w/2, unmark t/T01 w/2</code>
@@ -535,13 +535,13 @@ Examples: unmark 1 w/2, unmark t/T01 w/2</code>
 If an index is out of bounds, CLI-Tacts shows an error similar to:
 
 <div style="border: 1px solid #d9d9d9; border-radius: 6px; padding: 8px 12px; margin: 8px 0;">
-<code>This person's index provided is invalid.</code>
+<code>This student's index provided is invalid.</code>
 </div>
 
 If a student has already been unmarked for the specified week:
 
 <div style="border: 1px solid #d9d9d9; border-radius: 6px; padding: 8px 12px; margin: 8px 0;">
-<code>This person has already been unmarked as attended for this week.</code>
+<code>This student has already been unmarked as attended for this week.</code>
 </div>
 
 If the week is not in the range 1–13:
